@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vonage OTP System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📞 Vonage OTP Call System</h1>
+            <div class="status-indicator">
+                <span id="connection-status" class="status-dot"></span>
+                <span id="connection-text">Connecting...</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <h3 id="total-calls">0</h3>
+                    <p>Total Calls</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <h3 id="verified-calls">0</h3>
+                    <p>Verified</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-info">
+                    <h3 id="avg-duration">0s</h3>
+                    <p>Avg Duration</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">❌</div>
+                <div class="stat-info">
+                    <h3 id="failed-calls">0</h3>
+                    <p>Failed</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="trigger-section">
+            <h2>🚀 Trigger New Call</h2>
+            <form id="trigger-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="phone-number">Phone Number</label>
+                        <input type="tel" id="phone-number" placeholder="+1234567890" required>
+                        <small>E.164 format: +[country][number]</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="otp-code">OTP Code</label>
+                        <input type="text" id="otp-code" placeholder="123456" required>
+                        <small>4-8 digits</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Language</label>
+                        <select id="language">
+                            <option value="en-US">English</option>
+                            <option value="es-ES">Spanish</option>
+                            <option value="fr-FR">French</option>
+                            <option value="de-DE">German</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="transfer-number">Transfer Number (Optional)</label>
+                        <input type="tel" id="transfer-number" placeholder="+1234567890">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <span class="btn-icon">📞</span> Initiate Call
+                </button>
+            </form>
+        </section>
+
+        <section class="monitor-section">
+            <h2>🎧 Live Calls</h2>
+            <div id="live-calls" class="live-calls-container">
+                <div class="empty-state">No active calls</div>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <h2>📋 Recent Calls</h2>
+            <div class="table-container">
+                <table id="calls-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Phone</th>
+                            <th>OTP</th>
+                            <th>Status</th>
+                            <th>Verified</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calls-tbody">
+                        <tr><td colspan="6" class="empty-state">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast-container"></div>
+    <script src="app.js"></script>
+</body>
+</html>
